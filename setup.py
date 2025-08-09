@@ -10,18 +10,20 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
     requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
 
 setup(
-    name="auto-a2a",
+    name="nexagen",
     version="1.0.0",
     author="Chongqing Taoxiang Network Technology Co., Ltd.",
     author_email="wei@taoxiang.org",
-    description="Automated Multi-Agent System Builder with MCP Protocol Integration",
+    description="Next-Generation Multi-Agent System Builder with MCP Protocol Integration",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/taoxiang-org/auto-a2a",
+    url="https://github.com/taoxiang-org/nexagen",
+    license="MIT",  # 添加明确的许可证类型声明
+    license_files="LICENSE",  # 改为字符串格式（重要修复！）
     project_urls={
-        "Bug Reports": "https://github.com/taoxiang-org/auto-a2a/issues",
-        "Source": "https://github.com/taoxiang-org/auto-a2a",
-        "Documentation": "https://github.com/taoxiang-org/auto-a2a#readme",
+        "Bug Reports": "https://github.com/taoxiang-org/nexagen/issues",
+        "Source": "https://github.com/taoxiang-org/nexagen",
+        "Documentation": "https://github.com/taoxiang-org/nexagen#readme",
         "Homepage": "https://www.taoxiang.org",
     },
     packages=find_packages(),
@@ -45,11 +47,11 @@ setup(
     install_requires=requirements,
     entry_points={
         "console_scripts": [
-            "auto_a2a=auto_a2a.cli:cli",
+            "nexagen=Nexagen.cli:cli",
         ],
     },
     package_data={
-        "auto_a2a": ["templates/*.j2"],
+        "Nexagen": ["templates/*.j2"],
     },
     keywords="multi-agent, MCP, automation, AI, orchestration, agent-framework",
     zip_safe=False,
