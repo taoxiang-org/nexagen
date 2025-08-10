@@ -11,7 +11,7 @@ import requests
 import json
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(dotenv_path=".env")
 
 
 def call_llm(task_description: str) -> dict:
