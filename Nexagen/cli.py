@@ -1,6 +1,6 @@
 import click
 from pathlib import Path
-from .core import create_project, build_project, run_project
+from .core import create_project, build_project, run_project, magic_wrap_as_mcp
 
 @click.group()
 def cli():
@@ -28,6 +28,14 @@ def run():
     project_path = Path.cwd()
     run_project(project_path)
     click.echo("Nexagen system running")
+
+@cli.command()
+def magic():
+    """Wrap the entire multi-agent system as a single MCP agent"""
+    project_path = Path.cwd()
+    magic_wrap_as_mcp(project_path)
+    click.echo("✨ Nexagen MCP agent created successfully!")
+    click.echo("You can now use 'uv run mcp_server.py' to start the MCP server")
 
 if __name__ == "__main__":
     cli()

@@ -37,7 +37,7 @@ def call_llm(task_description: str) -> dict:
                 f"{base_url}/chat/completions",
                 headers=headers,
                 json=payload,
-                timeout=300
+                timeout=600
             )
     #print(response.text)
     result = response.json()

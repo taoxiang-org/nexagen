@@ -1,0 +1,216 @@
+{
+  "project": "Nexagen",
+  "version": "1.2.3",
+  "generated_at": "2025-10-07",
+  "summary": {
+    "total_modules": 2,
+    "total_files": 5,
+    "total_dependencies": 8,
+    "code_lines": 579
+  },
+  "modules": [
+    {
+      "name": "Nexagen",
+      "type": "core",
+      "path": "Nexagen/",
+      "files": 5,
+      "code_lines": 579,
+      "files_list": [
+        {
+          "name": "__init__.py",
+          "type": "module_init",
+          "imports": ["core", "cli"],
+          "exports": ["create_project", "build_project", "run_project", "magic_wrap_as_mcp", "cli"]
+        },
+        {
+          "name": "cli.py",
+          "type": "command_line",
+          "imports": ["click", "pathlib", "core"],
+          "exports": ["cli", "create", "build", "run", "magic"],
+          "commands": ["create", "build", "run", "magic"]
+        },
+        {
+          "name": "core.py",
+          "type": "core_logic",
+          "imports": ["json", "subprocess", "asyncio", "os", "sys", "traceback", "pathlib", "jinja2", "dotenv", "utils", "time", "prompt"],
+          "exports": ["create_project", "build_project", "run_project", "magic_wrap_as_mcp"],
+          "functions": [
+            "create_project",
+            "build_project",
+            "run_project",
+            "magic_wrap_as_mcp"
+          ]
+        },
+        {
+          "name": "utils.py",
+          "type": "utilities",
+          "imports": ["re", "subprocess", "asyncio", "httpx", "mcp", "pathlib", "typing", "os", "requests", "json", "dotenv"],
+          "exports": ["call_llm", "generate_agent_card"],
+          "functions": [
+            "call_llm",
+            "generate_agent_card"
+          ]
+        },
+        {
+          "name": "prompt.py",
+          "type": "constants",
+          "imports": [],
+          "exports": ["generate_agent_cards_prompt"],
+          "constants": ["generate_agent_cards_prompt"]
+        }
+      ]
+    },
+    {
+      "name": "build.lib.Nexagen",
+      "type": "build_artifact",
+      "path": "build/lib/Nexagen/",
+      "files": 5,
+      "code_lines": 0,
+      "description": "构建产物，与源代码相同"
+    }
+  ],
+  "external_dependencies": [
+    {
+      "name": "click",
+      "version": ">=8.0.0",
+      "type": "CLI框架",
+      "usage": "命令行界面构建",
+      "used_in": ["cli.py"]
+    },
+    {
+      "name": "jinja2",
+      "version": ">=3.0.0",
+      "type": "模板引擎",
+      "usage": "代码模板渲染",
+      "used_in": ["core.py"]
+    },
+    {
+      "name": "httpx",
+      "version": ">=0.24.0",
+      "type": "HTTP客户端",
+      "usage": "异步HTTP请求",
+      "used_in": ["utils.py"]
+    },
+    {
+      "name": "requests",
+      "version": ">=2.28.0",
+      "type": "HTTP库",
+      "usage": "LLM API调用",
+      "used_in": ["utils.py"]
+    },
+    {
+      "name": "python-dotenv",
+      "version": ">=0.19.0",
+      "type": "环境配置",
+      "usage": "环境变量管理",
+      "used_in": ["core.py", "utils.py"]
+    },
+    {
+      "name": "a2a-sdk",
+      "version": ">=0.1.0",
+      "type": "Agent框架",
+      "usage": "Agent-to-Agent通信",
+      "used_in": ["core.py"]
+    },
+    {
+      "name": "mcp",
+      "version": ">=0.1.0",
+      "type": "协议支持",
+      "usage": "MCP协议实现",
+      "used_in": ["utils.py"]
+    },
+    {
+      "name": "uvicorn",
+      "version": ">=0.18.0",
+      "type": "ASGI服务器",
+      "usage": "Web服务运行",
+      "used_in": ["core.py"]
+    }
+  ],
+  "internal_dependencies": {
+    "dependency_graph": {
+      "nodes": [
+        {"id": "__init__.py", "level": 0},
+        {"id": "cli.py", "level": 1},
+        {"id": "core.py", "level": 1},
+        {"id": "utils.py", "level": 2},
+        {"id": "prompt.py", "level": 2}
+      ],
+      "edges": [
+        {"from": "__init__.py", "to": "core.py", "type": "import"},
+        {"from": "__init__.py", "to": "cli.py", "type": "import"},
+        {"from": "cli.py", "to": "core.py", "type": "import"},
+        {"from": "core.py", "to": "utils.py", "type": "import"},
+        {"from": "core.py", "to": "prompt.py", "type": "import"}
+      ]
+    },
+    "dependency_matrix": {
+      "__init__.py": ["cli.py", "core.py"],
+      "cli.py": ["core.py"],
+      "core.py": ["utils.py", "prompt.py"],
+      "utils.py": [],
+      "prompt.py": []
+    }
+  },
+  "architecture": {
+    "layers": [
+      {
+        "name": "入口层",
+        "level": 0,
+        "files": ["__init__.py"],
+        "description": "模块入口，导出公共API"
+      },
+      {
+        "name": "接口层",
+        "level": 1,
+        "files": ["cli.py"],
+        "description": "命令行界面"
+      },
+      {
+        "name": "业务层",
+        "level": 1,
+        "files": ["core.py"],
+        "description": "核心业务逻辑"
+      },
+      {
+        "name": "工具层",
+        "level": 2,
+        "files": ["utils.py", "prompt.py"],
+        "description": "工具函数和常量"
+      }
+    ],
+    "patterns": [
+      "分层架构",
+      "模板模式 (Jinja2)",
+      "命令模式 (Click CLI)",
+      "工厂模式 (Agent生成)"
+    ]
+  },
+  "complexity_metrics": {
+    "total_imports": 28,
+    "max_depth": 2,
+    "circular_dependencies": 0,
+    "coupling_score": "Low",
+    "cohesion_score": "High"
+  },
+  "recommendations": [
+    {
+      "type": "optimization",
+      "priority": "medium",
+      "description": "考虑将core.py拆分为更小的模块",
+      "rationale": "core.py包含137行，职责过多"
+    },
+    {
+      "type": "refactoring",
+      "priority": "high",
+      "description": "重构build_project函数",
+      "rationale": "圈复杂度为13，超过建议值10"
+    },
+    {
+      "type": "testing",
+      "priority": "high",
+      "description": "增加单元测试覆盖",
+      "rationale": "提高代码可维护性"
+    }
+  ]
+}

@@ -11,7 +11,7 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 
 setup(
     name="nexagen",
-    version="1.0.1",
+    version="1.2.3",
     author="Chongqing Taoxiang Network Technology Co., Ltd.",
     author_email="wei@taoxiang.org",
     description="Next-Generation Multi-Agent System Builder with MCP Protocol Integration",
